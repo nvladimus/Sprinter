@@ -32,7 +32,7 @@
 
 //// Calibration variables
 // X, Y, Z, E steps per unit - Metric Prusa Mendel with Wade extruder:
-#define _AXIS_STEP_PER_UNIT {80, 80, 3200/1.25,700}
+#define _AXIS_STEP_PER_UNIT {1600, 40, 3200,700}
 // Metric Prusa Mendel with Makergear geared stepper extruder:
 //#define _AXIS_STEP_PER_UNIT {80,80,3200/1.25,1380}
 // MakerGear Hybrid Prusa Mendel:
@@ -46,7 +46,7 @@
 //If your axes are only moving in one direction, make sure the endstops are connected properly.
 //If your axes move in one direction ONLY when the endstops are triggered, set [XYZ]_ENDSTOP_INVERT to true here:
 const bool X_ENDSTOP_INVERT = false;
-const bool Y_ENDSTOP_INVERT = false;
+const bool Y_ENDSTOP_INVERT = true;
 const bool Z_ENDSTOP_INVERT = false;
 
 // This determines the communication speed of the printer
@@ -54,7 +54,7 @@ const bool Z_ENDSTOP_INVERT = false;
 //#define BAUDRATE 250000
 
 // Comment out (using // at the start of the line) to disable SD support:
-#define SDSUPPORT
+//#define SDSUPPORT
 
 // Uncomment to make run init.g from SD on boot
 //#define SDINITFILE
@@ -82,7 +82,7 @@ const bool Z_ENDSTOP_INVERT = false;
 //-----------------------------------------------------------------------
 //Uncomment to aktivate the arc (circle) function (G2/G3 Command)
 //Without SD function an ARC function the used Flash is smaller 31 kb
-#define USE_ARC_FUNCTION
+//#define USE_ARC_FUNCTION
 
 //-----------------------------------------------------------------------
 //// ADVANCED SETTINGS - to tweak parameters
@@ -111,7 +111,7 @@ const bool Z_ENDSTOP_INVERT = false;
 //-----------------------------------------------------------------------
 const bool DISABLE_X = false;
 const bool DISABLE_Y = false;
-const bool DISABLE_Z = true;
+const bool DISABLE_Z = false;
 const bool DISABLE_E = false;
 
 //-----------------------------------------------------------------------
@@ -119,7 +119,7 @@ const bool DISABLE_E = false;
 //-----------------------------------------------------------------------
 const bool INVERT_X_DIR = false;
 const bool INVERT_Y_DIR = false;
-const bool INVERT_Z_DIR = true;
+const bool INVERT_Z_DIR = false;
 const bool INVERT_E_DIR = false;
 
 //-----------------------------------------------------------------------
@@ -132,23 +132,23 @@ const bool INVERT_E_DIR = false;
 
 //#define ENDSTOPS_ONLY_FOR_HOMING // If defined the endstops will only be used for homing
 
-const bool min_software_endstops = false; //If true, axis won't move to coordinates less than zero.
+const bool min_software_endstops = true; //If true, axis won't move to coordinates less than zero.
 const bool max_software_endstops = true; //If true, axis won't move to coordinates greater than the defined lengths below.
 
 
 //-----------------------------------------------------------------------
 //Max Length for Prusa Mendel, check the ways of your axis and set this Values
 //-----------------------------------------------------------------------
-const int X_MAX_LENGTH = 200;
-const int Y_MAX_LENGTH = 200;
-const int Z_MAX_LENGTH = 100;
+const int X_MAX_LENGTH = 8;
+const int Y_MAX_LENGTH = 1;
+const int Z_MAX_LENGTH = 12.5;
 
 //-----------------------------------------------------------------------
 //// MOVEMENT SETTINGS
 //-----------------------------------------------------------------------
 const int NUM_AXIS = 4; // The axis order in all axis related arrays is X, Y, Z, E
-#define _MAX_FEEDRATE {400, 400, 2, 45}       // (mm/sec)    
-#define _HOMING_FEEDRATE {1500,1500,120}      // (mm/min) !!
+#define _MAX_FEEDRATE {1, 1, 1, 1}       // (mm/sec)    
+#define _HOMING_FEEDRATE {60,60,60}      // (mm/min) !!
 #define _AXIS_RELATIVE_MODES {false, false, false, false}
 
 #define MAX_STEP_FREQUENCY 30000 // Max step frequency
@@ -164,7 +164,7 @@ const int NUM_AXIS = 4; // The axis order in all axis related arrays is X, Y, Z,
 
 // Min step delay in microseconds. If you are experiencing missing steps, try to raise the delay microseconds, but be aware this
 // If you enable this, make sure STEP_DELAY_RATIO is disabled.
-//#define STEP_DELAY_MICROS 1
+#define STEP_DELAY_MICROS 10
 
 // Step delay over interval ratio. If you are still experiencing missing steps, try to uncomment the following line, but be aware this
 // If you enable this, make sure STEP_DELAY_MICROS is disabled. (except for Gen6: both need to be enabled.)
@@ -182,13 +182,13 @@ const long min_time_before_dir_change = 30; //milliseconds
 //// Acceleration settings
 //-----------------------------------------------------------------------
 // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
-#define _ACCELERATION 1000         // Axis Normal acceleration mm/s^2
+#define _ACCELERATION 1         // Axis Normal acceleration mm/s^2
 #define _RETRACT_ACCELERATION 2000 // Extruder Normal acceleration mm/s^2
 #define _MAX_XY_JERK 20.0
 #define _MAX_Z_JERK 0.4
 #define _MAX_E_JERK 5.0    // (mm/sec)
 //#define _MAX_START_SPEED_UNITS_PER_SECOND {25.0,25.0,0.2,10.0}
-#define _MAX_ACCELERATION_UNITS_PER_SQ_SECOND {5000,5000,50,5000}    // X, Y, Z and E max acceleration in mm/s^2 for printing moves or retracts
+#define _MAX_ACCELERATION_UNITS_PER_SQ_SECOND {1,1,1,1}    // X, Y, Z and E max acceleration in mm/s^2 for printing moves or retracts
 
 
 // Minimum planner junction speed. Sets the default minimum speed the planner plans for at the end
@@ -202,10 +202,10 @@ const long min_time_before_dir_change = 30; //milliseconds
 #define _MIN_SEG_TIME 20000
 
 // If defined the movements slow down when the look ahead buffer is only half full
-#define SLOWDOWN
+//#define SLOWDOWN
 
 
-const int dropsegments=5; //everything with less than this number of steps will be ignored as move and joined with the next movement
+const int dropsegments=1; //everything with less than this number of steps will be ignored as move and joined with the next movement
 
 //-----------------------------------------------------------------------
 // Machine UUID
@@ -312,14 +312,14 @@ const int dropsegments=5; //everything with less than this number of steps will 
 #define HEATER_CURRENT 255
 
 // How often should the heater check for new temp readings, in milliseconds
-#define HEATER_CHECK_INTERVAL 500
-#define BED_CHECK_INTERVAL 5000
+#define HEATER_CHECK_INTERVAL 500000
+#define BED_CHECK_INTERVAL 5000000
 
 // Comment the following line to enable heat management during acceleration
-#define DISABLE_CHECK_DURING_ACC
+//#define DISABLE_CHECK_DURING_ACC
 #ifndef DISABLE_CHECK_DURING_ACC
   // Uncomment the following line to disable heat management during moves
-  //#define DISABLE_CHECK_DURING_MOVE
+  #define DISABLE_CHECK_DURING_MOVE
 #endif
 
 // Uncomment the following line to disable heat management during travel moves (and extruder-only moves, eg: retracts), strongly recommended if you are missing steps mid print.
