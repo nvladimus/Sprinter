@@ -151,7 +151,7 @@ const int NUM_AXIS = 4; // The axis order in all axis related arrays is X, Y, Z,
 #define _HOMING_FEEDRATE {60,60,60}      // (mm/min) !!
 #define _AXIS_RELATIVE_MODES {false, false, false, false}
 
-#define MAX_STEP_FREQUENCY 30000 // Max step frequency
+#define MAX_STEP_FREQUENCY 10000 // Max step frequency
 
 //For the retract (negative Extruder) move this maxiumum Limit of Feedrate is used
 //The next positive Extruder move use also this Limit, 
