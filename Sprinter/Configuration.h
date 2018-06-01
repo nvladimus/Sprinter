@@ -32,7 +32,7 @@
 
 //// Calibration variables
 // X, Y, Z, E steps per unit - Metric Prusa Mendel with Wade extruder:
-#define _AXIS_STEP_PER_UNIT {1600, 40, 3200,700}
+#define _AXIS_STEP_PER_UNIT {1600, 2.222, 3200, 700} //for Y axis, (steps/degree)
 // Metric Prusa Mendel with Makergear geared stepper extruder:
 //#define _AXIS_STEP_PER_UNIT {80,80,3200/1.25,1380}
 // MakerGear Hybrid Prusa Mendel:
@@ -112,13 +112,13 @@ const bool Z_ENDSTOP_INVERT = false;
 const bool DISABLE_X = false;
 const bool DISABLE_Y = false;
 const bool DISABLE_Z = false;
-const bool DISABLE_E = false;
+const bool DISABLE_E = true;
 
 //-----------------------------------------------------------------------
 // Inverting axis direction
 //-----------------------------------------------------------------------
 const bool INVERT_X_DIR = false;
-const bool INVERT_Y_DIR = false;
+const bool INVERT_Y_DIR = true;
 const bool INVERT_Z_DIR = false;
 const bool INVERT_E_DIR = false;
 
@@ -140,15 +140,15 @@ const bool max_software_endstops = true; //If true, axis won't move to coordinat
 //Max Length for Prusa Mendel, check the ways of your axis and set this Values
 //-----------------------------------------------------------------------
 const int X_MAX_LENGTH = 8;
-const int Y_MAX_LENGTH = 1;
+const int Y_MAX_LENGTH = 180; //for this axis, degrees!
 const int Z_MAX_LENGTH = 12.5;
 
 //-----------------------------------------------------------------------
 //// MOVEMENT SETTINGS
 //-----------------------------------------------------------------------
 const int NUM_AXIS = 4; // The axis order in all axis related arrays is X, Y, Z, E
-#define _MAX_FEEDRATE {1, 1, 1, 1}       // (mm/sec)    
-#define _HOMING_FEEDRATE {60,60,60}      // (mm/min) !!
+#define _MAX_FEEDRATE {1, 10, 1, 1}       // (mm/sec)    //for Y axis, (degrees/sec)
+#define _HOMING_FEEDRATE {60,600,60}      // (mm/min) !! //for Y axis, (degrees/min)
 #define _AXIS_RELATIVE_MODES {false, false, false, false}
 
 #define MAX_STEP_FREQUENCY 10000 // Max step frequency
