@@ -32,7 +32,7 @@
 
 //// Calibration variables
 // X, Y, Z, E steps per unit - Metric Prusa Mendel with Wade extruder:
-#define _AXIS_STEP_PER_UNIT {1600, 2.222, 1600, 700} //for Y axis, (steps/degree)
+#define _AXIS_STEP_PER_UNIT {1600, 1600, 1600, 700} //
 // Metric Prusa Mendel with Makergear geared stepper extruder:
 //#define _AXIS_STEP_PER_UNIT {80,80,3200/1.25,1380}
 // MakerGear Hybrid Prusa Mendel:
@@ -46,7 +46,7 @@
 //If your axes are only moving in one direction, make sure the endstops are connected properly.
 //If your axes move in one direction ONLY when the endstops are triggered, set [XYZ]_ENDSTOP_INVERT to true here:
 const bool X_ENDSTOP_INVERT = false;
-const bool Y_ENDSTOP_INVERT = true;
+const bool Y_ENDSTOP_INVERT = false;
 const bool Z_ENDSTOP_INVERT = false;
 
 // This determines the communication speed of the printer
@@ -118,7 +118,7 @@ const bool DISABLE_E = true;
 // Inverting axis direction
 //-----------------------------------------------------------------------
 const bool INVERT_X_DIR = false;
-const bool INVERT_Y_DIR = true;
+const bool INVERT_Y_DIR = false;
 const bool INVERT_Z_DIR = false;
 const bool INVERT_E_DIR = false;
 
@@ -140,15 +140,15 @@ const bool max_software_endstops = false; //If true, axis won't move to coordina
 //Max Length for Prusa Mendel, check the ways of your axis and set this Values
 //-----------------------------------------------------------------------
 const int X_MAX_LENGTH = 8;
-const int Y_MAX_LENGTH = 90; //for this axis, degrees!
+const int Y_MAX_LENGTH = 8; 
 const int Z_MAX_LENGTH = 8;
 
 //-----------------------------------------------------------------------
 //// MOVEMENT SETTINGS
 //-----------------------------------------------------------------------
 const int NUM_AXIS = 4; // The axis order in all axis related arrays is X, Y, Z, E
-#define _MAX_FEEDRATE {1, 30, 1, 1}       // (mm/sec)    //for Y axis, (degrees/sec)
-#define _HOMING_FEEDRATE {60,1800,60}      // (mm/min) !! //for Y axis, (degrees/min)
+#define _MAX_FEEDRATE {1, 1, 1, 1}       // (mm/sec)    //for Y axis, (degrees/sec)
+#define _HOMING_FEEDRATE {60,60,60}      // (mm/min) !! //for Y axis, (degrees/min)
 #define _AXIS_RELATIVE_MODES {false, false, false, false}
 
 #define MAX_STEP_FREQUENCY 10000 // Max step frequency
@@ -188,7 +188,7 @@ const long min_time_before_dir_change = 30; //milliseconds
 #define _MAX_Z_JERK 0.4
 #define _MAX_E_JERK 5.0    // (mm/sec)
 //#define _MAX_START_SPEED_UNITS_PER_SECOND {25.0,25.0,0.2,10.0}
-#define _MAX_ACCELERATION_UNITS_PER_SQ_SECOND {1,30,1,1}    // X, Y, Z and E max acceleration in mm/s^2 for printing moves or retracts
+#define _MAX_ACCELERATION_UNITS_PER_SQ_SECOND {1,1,1,1}    // X, Y, Z and E max acceleration in mm/s^2 for printing moves or retracts
 
 
 // Minimum planner junction speed. Sets the default minimum speed the planner plans for at the end
